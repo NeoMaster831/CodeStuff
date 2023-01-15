@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/skekw/OneDrive/바탕 화면/CodeStuff/Codeforces/1775",
-      "program": "c:/Users/skekw/OneDrive/바탕 화면/CodeStuff/Codeforces/1775/build/Debug/outDebug",
+      "cwd": "c:/Users/skekw/OneDrive/바탕 화면/CodeStuff/Codeforces/1733",
+      "program": "c:/Users/skekw/OneDrive/바탕 화면/CodeStuff/Codeforces/1733/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/skekw/OneDrive/바탕 화면/CodeStuff/AtCoder/RoadToGreen1.1",
-      "program": "c:/Users/skekw/OneDrive/바탕 화면/CodeStuff/AtCoder/RoadToGreen1.1/build/Debug/outDebug",
+      "cwd": "c:/Users/skekw/OneDrive/바탕 화면/CodeStuff/AtCoder/B285 (best)",
+      "program": "c:/Users/skekw/OneDrive/바탕 화면/CodeStuff/AtCoder/B285 (best)/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

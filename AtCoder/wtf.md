@@ -10,3 +10,4 @@ RoadToGreen1.2: https://kenkoooo.com/atcoder/#/contest/show/e9cf2b48-4411-4cc5-b
 
 RoadToGreen1.3: https://kenkoooo.com/atcoder/#/contest/show/34fdf9e9-e76c-4cdb-a26f-1fcfa630d1ba
 
+RoadToGreen2: https://kenkoooo.com/atcoder/#/contest/show/5da411c6-fd16-4ba4-a01e-5e30112fbe73
