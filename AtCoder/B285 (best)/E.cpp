@@ -29,8 +29,7 @@ signed main() {
             if (j % 2 == 0) {
                 x -= A[oldis];
             }
-
-            //cout << "i: " << i << ", j: " << j << ", x: " << x << '\n';
+            
             dp[i] = max(dp[i], x + dp[i - j]);
         }
 
