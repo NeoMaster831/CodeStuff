@@ -1,10 +1,13 @@
 /*
-A* Algorithm (distorted)
-Made by Wane, 박종휘. Working for GNU GPP 17
+A* 알고리즘을 이용한 길찾기
 */
 
 //#define _DEBUGMODE
-#include <bits/stdc++.h>
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <stack>
+#include <set>
 
 using namespace std;
 #define pp pair<int, int>
@@ -15,7 +18,7 @@ using namespace std;
 const int dx[4] = { 0, 0, 1, -1 };
 const int dy[4] = { -1, 1, 0, 0 };
 
-struct Cell {
+struct Cell { // 점자블록 모형 구조체
 	int parent_x, parent_y;
 	double f, g, h;
 };
@@ -25,7 +28,7 @@ struct Cell {
 // 2 = 시작점
 // 3 = 도착점
 #ifdef _DEBUGMODE
-vector<vector<int> > v = {
+vector<vector<int> > v = { // 디버그 할 때 쓰던 테스트 모형
     { 0, 2, 0, 1, 3 },
     { 0, 1, 0, 1, 0 },
     { 0, 1, 0, 1, 0 },
@@ -35,10 +38,10 @@ vector<vector<int> > v = {
 int R = v.size(), C = v[0].size();
 #endif
 #ifndef _DEBUGMODE
-vector<vector<int> > v(MAX);
-int R, C;
+vector<vector<int> > v(MAX); // 점자블록 길 구조체
+int R, C; // R = 세로, C = 가로
 
-void get_input() {
+void get_input() { // 길 입력 받기
     cin >> R >> C;
     for (int i = 0; i < R; i++) {
         for (int j = 0; j < C; j++) {
@@ -49,25 +52,25 @@ void get_input() {
 
 #endif
 
-bool is_dest(int row, int col, pp dst) {
+bool is_dest(int row, int col, pp dst) { // 현재 있는 지점이 도착지인지 체크
     if (row == dst.first && col == dst.second) return true;
     return false;
 }
 
-bool is_valid(int row, int col) {
+bool is_valid(int row, int col) { // 현재 있는 지점이 스마트 점자 블럭 길을 벗어나는지 체크
     if (row < 0 || row >= R || col < 0 || col >= C) return false;
     else return true;
 }
 
-bool is_unblocked(int row, int col) {
+bool is_unblocked(int row, int col) { // 현재 있는 지점이 장애물인지 체크
     return v[row][col] != 1;
 }
 
-double get_dist(int row, int col, pp dst) {
+double get_dist(int row, int col, pp dst) { // 도착지까지 거리 구하는 함수
     return (double)sqrt(pow(row - dst.first, 2) + pow(col - dst.second, 2));
 }
 
-void trace_path(Cell cell[MAX][MAX], pp dst) {
+void trace_path(Cell cell[MAX][MAX], pp dst) { // 길찾기 끝났을 때 역추적 함수
 
     stack<pp> s;
     int y = dst.first;
@@ -90,15 +93,11 @@ void trace_path(Cell cell[MAX][MAX], pp dst) {
     }
 }
 
-bool astar(pp src, pp dst) {
+bool astar(pp src, pp dst) { // 길찾기 알고리즘
 
-    //cout << 1 << '\n';
     if (!is_valid(src.first, src.second) || !is_valid(dst.first, dst.second)) return false;
-    //cout << !is_unblocked(src.first, src.second) << ' ' << !is_unblocked(dst.first, dst.second) << '\n';
     if (!is_unblocked(src.first, src.second) || !is_unblocked(dst.first, dst.second)) return false;
-    //cout << 1;
     if (is_dest(src.first, src.second, dst)) return false;
-    //cout << 1;
 
     bool closed[MAX][MAX];
     memset(closed, false, sizeof(closed));
@@ -122,7 +121,6 @@ bool astar(pp src, pp dst) {
     SET.insert({ 0.0, {sy, sx}});
 
     while (!SET.empty()) {
-        //cout << SET.size() << '\n';
         pdp p = *SET.begin();
         SET.erase(SET.begin());
 
