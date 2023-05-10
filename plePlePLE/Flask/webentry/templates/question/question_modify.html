@@ -1,0 +1,7 @@
+<h1>{{question.subject}}</h1>
+<h3>Modify Content</h3>
+
+<form action="{{url_for('question.modify', question_id=question.id)}}" method="post">
+    <textarea name="content" id="content" rows="40"></textarea>
+    <input type="submit" value="Modify Question">
+</form>

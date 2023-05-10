@@ -1,0 +1,22 @@
+<h1>{{question.subject}}</h1>
+
+<div>{{question.content}}</div>
+<div>ID: {{question.id}}, @ {{question.create_date}}</div>
+
+<form action="{{url_for('question.mdetail', question_id=question.id)}}" method="get">
+    <button>Modify</button>
+</form>
+
+<h5>{{question.answer_set|length }} Answer Submitted.</h5>
+<div>
+    <ul>
+    {% for answer in question.answer_set %}
+        <li>{{answer.content}} @ {{answer.create_date}}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+<form action="{{url_for('answer.create', question_id=question.id)}}" method="post">
+    <textarea name="content" id="content" rows="15"></textarea>
+    <input type="submit" value="Submit Answer">
+</form>
