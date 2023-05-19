@@ -8,6 +8,8 @@ A* 알고리즘을 이용한 길찾기
 #include <vector>
 #include <stack>
 #include <set>
+#include <math.h>
+#include <memory.h>
 
 using namespace std;
 #define pp pair<int, int>
