@@ -4,6 +4,7 @@
         "xstring": "cpp",
         "iostream": "cpp",
         "queue": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "chrono": "cpp"
     }
 }
