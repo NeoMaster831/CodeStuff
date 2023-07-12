@@ -5,6 +5,9 @@
         "iostream": "cpp",
         "queue": "cpp",
         "utility": "cpp",
-        "chrono": "cpp"
-    }
+        "chrono": "cpp",
+        "cstdlib": "cpp",
+        "complex": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }

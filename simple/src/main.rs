@@ -57,19 +57,17 @@ impl GenshinGacha {
         self.four_star_stack += 1;
         self.stack += 1;
         let preresult = make_rand(1, 1000); // 0.6% 확률 계산
-        //println!("preresult: {}", preresult);
-        //println!("{}", 51 + max(0,(self.four_star_stack as i32 - 8) * 510));
         if preresult <= 6 + max(0, (self.stack as i32 - 73) * 60) as u32 {
 
             self.four_star_stack = 0;
             self.stack = 0;
             
             let realres = make_rand(0, 1);
-            if realres <= 0 + self.guaranteed as u32 { // Yae Miko
+            if realres <= 0 + self.guaranteed as u32 { // Sangonomiya Kokomi
                 
-                self.characters.insert(String::from("Yae Miko"), 
-                self.characters.get(&String::from("Yae Miko")).unwrap_or(&0) + 1);
-                print!("★★★★★ Yae Miko\n");
+                self.characters.insert(String::from("Sangonomiya Kokomi"), 
+                self.characters.get(&String::from("Sangonomiya Kokomi")).unwrap_or(&0) + 1);
+                print!("★★★★★ Sangonomiya Kokomi\n");
                 
                 self.guaranteed = false;
 
@@ -113,7 +111,7 @@ impl GenshinGacha {
     }
 
     fn print_self(&self) {
-        print!("Spent: {} KRW\nCurrent Primogems: {}\nGotten 3 stars: {}\nGotten 4 stars: {}\nGotten 5 stars: {:?}, Current Stack: {}, Four Star Stack: {}\nNext 5 star is Yae Miko?: {:?}\n",
+        print!("Spent: {} KRW\nCurrent Primogems: {}\nGotten 3 stars: {}\nGotten 4 stars: {}\nGotten 5 stars: {:?}, Current Stack: {}, Four Star Stack: {}\nNext 5 star is Kokomi-chan?: {:?}\n",
                 self.spent, self.primogems, self.got_three_stars, self.got_four_stars, self.characters, self.stack, self.four_star_stack, self.guaranteed);
     }
 }

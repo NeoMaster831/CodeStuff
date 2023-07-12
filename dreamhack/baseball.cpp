@@ -15,7 +15,9 @@ int main() {
         for (int j = 0; j < 3; j++) {
 
             int c = in[i + j];
-            while (c)
+            while (c) {
+                
+            }
         }
     }
 }
