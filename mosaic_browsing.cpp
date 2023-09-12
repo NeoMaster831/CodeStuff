@@ -93,17 +93,7 @@ int main() {
             to_find.push_back(0);
         }
     }
-    for (int i = 1; i <= RQ; i++) {
-        for (int j = 1; j <= CQ; j++) target.push_back(q[i][j]);
-    }
-    
-    for (int i = 0; i < to_find.size(); i++) {
-        cout << to_find[i] << ' ';
-    } cout << '\n';
-    for (int i = 0; i < target.size(); i++) {
-        cout << target[i] << ' ';
-    } cout << '\n';
-    
+    for (int i = 1; i <= RQ; i++) for (int j = 1; j <= CQ; j++) target.push_back(q[i][j]);
 
     vector<int> R;
 	for (int i = to_find.size() - 1; i >= 0; i--) {
@@ -118,12 +108,12 @@ int main() {
 		S[1].push_back(target[i]);
 	}
 	for (int i = 0; i < S[1].size(); i++) {
-		S[2].push_back((int)S[1][i].real()*(int)S[1][i].real());
-		S[3].push_back((int)S[2][i].real()*(int)S[1][i].real());
+		S[2].push_back((double)S[1][i].real()*(double)S[1][i].real());
+		S[3].push_back((double)S[2][i].real()*(double)S[1][i].real());
 	}
 	for (int i = 0; i < T[1].size(); i++) {
-		T[2].push_back((int)T[1][i].real()*(int)T[1][i].real());
-		T[3].push_back((int)T[2][i].real()*(int)T[1][i].real());
+		T[2].push_back((double)T[1][i].real()*(double)T[1][i].real());
+		T[3].push_back((double)T[2][i].real()*(double)T[1][i].real());
 	}
 
 	Polynomial result[4];
@@ -133,10 +123,11 @@ int main() {
 
 	Polynomial check;
 	for (int k = 0; k < result[1].size(); k++) {
-		check.push_back((int)result[1][k].real() + -2 * (int)result[2][k].real() + (int)result[3][k].real());
+		check.push_back((double)result[1][k].real() + -2 * (double)result[2][k].real() + (double)result[3][k].real());
 	}
     vector<pair<int, int> > ans;
 	for (int i = to_find.size() - 1; i < target.size(); i++) {
+        if ((i - to_find.size() + 1) % CQ > CQ - CP) continue;
 		if (abs((double)check[i].real() < 1e-6)) {
             int linear = i - to_find.size() + 2;
             int row = linear / CQ + 1;

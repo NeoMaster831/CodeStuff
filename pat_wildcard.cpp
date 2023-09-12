@@ -2,7 +2,6 @@
 #include <vector>
 #include <complex>
 #include <cmath>
-#include <set>
 
 using namespace std;
 
@@ -67,52 +66,43 @@ Polynomial multiplyPolynomials(const Polynomial& T, const Polynomial& S) {
 int main() {
 
 	string to_find = "o?";
-	string targ = "Dance Number Wo Tomo Ni";
+	string target = "Dance Number Wo Tomo Ni";
 	for (int i = 0; i < to_find.size() / 2; i++) {
 		swap(to_find[i], to_find[to_find.size() - 1 - i]);
 	}
 
-    set<int> found;
-    for (int j = 0; j < targ.size(); j += to_find.size()) {
-        string target = "";
-        for (int i = j; i < min(j + 2 * to_find.size(), targ.size()); i++) {
-            target += targ[i];
-        }
-        Polynomial T[4], S[4];
-	    for (int i = 0; i < to_find.size(); i++) {
-		    if (to_find[i] == '?') T[1].push_back(0);
-    		else T[1].push_back(to_find[i]);
-        }
-	    for (int i = 0; i < target.size(); i++) {
-	    	S[1].push_back(target[i]);
-    	}
-    	for (int i = 0; i < S[1].size(); i++) {
-    		S[2].push_back((int)S[1][i].real()*(int)S[1][i].real());
-    		S[3].push_back((int)S[2][i].real()*(int)S[1][i].real());
-    	}
-    	for (int i = 0; i < T[1].size(); i++) {
-    		T[2].push_back((int)T[1][i].real()*(int)T[1][i].real());
-    		T[3].push_back((int)T[2][i].real()*(int)T[1][i].real());
-    	}       
+    Polynomial T[4], S[4];
+	for (int i = 0; i < to_find.size(); i++) {
+		if (to_find[i] == '?') T[1].push_back(0);
+		else T[1].push_back(to_find[i]);
+	}
+	for (int i = 0; i < target.size(); i++) {
+		S[1].push_back(target[i]);
+	}
+	for (int i = 0; i < S[1].size(); i++) {
+		S[2].push_back((double)S[1][i].real()*(double)S[1][i].real());
+		S[3].push_back((double)S[2][i].real()*(double)S[1][i].real());
+	}
+	for (int i = 0; i < T[1].size(); i++) {
+		T[2].push_back((double)T[1][i].real()*(double)T[1][i].real());
+		T[3].push_back((double)T[2][i].real()*(double)T[1][i].real());
+	}
 
-	    Polynomial result[4];
-    	for (int k = 1; k <= 3; k++) {
-	    	result[k] = multiplyPolynomials(T[4 - k], S[k]);
-	    }
+	Polynomial result[4];
+	for (int k = 1; k <= 3; k++) {
+		result[k] = multiplyPolynomials(T[4 - k], S[k]);
+	}
 
-	    Polynomial check;
-	    for (int k = 0; k < result[1].size(); k++) {
-    		check.push_back((int)result[1][k].real() + -2 * (int)result[2][k].real() + (int)result[3][k].real());
-	    }
-	    for (int i = to_find.size() - 1; i < target.size(); i++) {
-		    if (abs((double)check[i].real() < 3.96974)) {
-			    found.insert(j + i - to_find.size() + 1);
-		    }
-	    }
-    }
-    for (auto iter = found.begin(); iter != found.end(); iter++) {
-        cout << "check! " << *iter << '\n';
-    }
+	Polynomial check;
+	for (int k = 0; k < result[1].size(); k++) {
+		check.push_back((double)result[1][k].real() + -2 * (double)result[2][k].real() + (double)result[3][k].real());
+	}
+	for (int i = to_find.size() - 1; i < target.size(); i++) {
+        //cout << check[i].real() << ' ';
+		if (abs((double)check[i].real() < 1e-6)) {
+			cout << "check! " << i - to_find.size() + 1 << '\n';
+		}
+	}
 
     return 0;
 }

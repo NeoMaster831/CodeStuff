@@ -2,7 +2,7 @@
 A* 알고리즘을 이용한 길찾기
 */
 
-//#define _DEBUGMODE
+#define _DEBUGMODE
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -31,11 +31,14 @@ struct Cell { // 점자블록 모형 구조체
 // 3 = 도착점
 #ifdef _DEBUGMODE
 vector<vector<int> > v = { // 디버그 할 때 쓰던 테스트 모형
-    { 0, 2, 0, 1, 3 },
-    { 0, 1, 0, 1, 0 },
-    { 0, 1, 0, 1, 0 },
-    { 0, 1, 0, 1, 0 },
-    { 0, 1, 0, 0, 0 }
+    { 1, 1, 1, 1, 0, 0, 0, 0 },
+    { 2, 0, 1, 0, 0, 1, 1, 0 },
+    { 1, 0, 1, 0, 1, 1, 0, 0 },
+    { 0, 0, 1, 0, 0, 1, 0, 1 },
+    { 0, 0, 1, 0, 1, 1, 0, 1 },
+    { 0, 0, 0, 0, 1, 0, 0, 3 },
+    { 0, 1, 1, 1, 1, 0, 1, 1 },
+    { 0, 0, 0, 0, 1, 0, 0, 0 }
 };
 int R = v.size(), C = v[0].size();
 #endif
@@ -128,6 +131,7 @@ bool astar(pp src, pp dst) { // 길찾기 알고리즘
 
         int y = p.second.first;
         int x = p.second.second;
+        cout << y << ' ' << x << '\n';
         closed[y][x] = true;
 
         double ng, nf, nh;
@@ -151,6 +155,7 @@ bool astar(pp src, pp dst) { // 길찾기 알고리즘
                     nf = ng + nh;
 
                     if (cell[ny][nx].f == INF || cell[ny][nx].f > nf) {
+                        cout << nf << ' ' << ny << ' ' << nx << '\n';
                         cell[ny][nx].f = nf;
                         cell[ny][nx].g = ng;
                         cell[ny][nx].h = nh;
